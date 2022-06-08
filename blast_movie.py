@@ -230,11 +230,13 @@ max_str_len_score = len(str(max(all_score)))
 
 G = network_creation.create_graph(blast_tbl=blast_df, thresholdName=args.thresholdName)
 
+msg="Singleton are kept" if args.keep_singleton else "No singleton"
+dash="-"*21 if args.keep_singleton else "-"*14
 
 print()
-print("----------------------")
-print("Plotting network files")
-print("----------------------")
+print(f"----------------------{dash}")
+print(f"Plotting network files: {msg}")
+print(f"----------------------{dash}")
 
 if args.threads == 1:
     results = []
@@ -266,7 +268,7 @@ if args.threads == 1:
             singleton=args.keep_singleton,
         )
 
-        results.append(tmp_results)
+        results.append([score, tmp_results])
 else:
     args_func = []
     for score_index in range(num_score):
@@ -304,6 +306,8 @@ else:
         )
     )
     pool.close()
+
+    results=[(i, results[i]) for i in range(num_score)]
 
 df = pd.DataFrame(results, columns=["threshold_value", "red_edges"])
 

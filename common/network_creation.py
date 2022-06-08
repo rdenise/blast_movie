@@ -182,7 +182,7 @@ def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, l
     :type: pandas.DataFrame
     :params output: Name of the graphml file
     :type: str
-    :return: a tuple containing the threshold and the number of red edge in the network
+    :return: the number of red edge in the network
 
     """
 
@@ -323,7 +323,7 @@ def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, l
 
     plt.close("all")
 
-    return threshold, num_edges_red
+    return num_edges_red
 
 
 ##########################################################################
