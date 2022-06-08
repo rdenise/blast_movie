@@ -242,9 +242,10 @@ def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, l
     graph = graph.to_undirected()
 
     # Remove singleton
-    outdeg = graph.degree()
-    to_remove = [n[0] for n in outdeg if outdeg[n[0]] == 0]
-    graph.remove_nodes_from(to_remove)
+    if not singleton:
+        outdeg = graph.degree()
+        to_remove = [n[0] for n in outdeg if outdeg[n[0]] == 0]
+        graph.remove_nodes_from(to_remove)
 
     # print("Calculating layout...")
 

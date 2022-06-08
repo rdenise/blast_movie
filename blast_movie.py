@@ -231,7 +231,7 @@ max_str_len_score = len(str(max(all_score)))
 G = network_creation.create_graph(blast_tbl=blast_df, thresholdName=args.thresholdName)
 
 msg="Singleton are kept" if args.keep_singleton else "No singleton"
-dash="-"*21 if args.keep_singleton else "-"*14
+dash="-"*20 if args.keep_singleton else "-"*14
 
 print()
 print(f"----------------------{dash}")
