@@ -50,6 +50,8 @@ General input dataset options:
                         Name of the column in annotation file that contains the information about the clustering that will be used to know if two proteins are in the same cluster
   -c <column_name>, --column_name <column_name>
                         Name of the column in annotation file that contain the group you want to highligh in the figure. The node will be colored based on this group
+  -keep, --keep_singleton
+                        Option to add or not the singleton in the final image
   -lcc {mean,subject,query,shortest,longest}, --length_choice_cov {mean,subject,query,shortest,longest}
                         Length used for percentage overlap calculation between 2 sequences: 'mean'=mean of the 2 lengths (default), 'subject'=subject length, 'query'=query length,
                         'shortest'=shortest length, 'longest'=longest length
