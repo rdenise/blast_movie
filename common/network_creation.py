@@ -324,7 +324,7 @@ def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, l
 
     plt.close("all")
 
-    return num_edges_red
+    return threshold, num_edges_red
 
 
 ##########################################################################

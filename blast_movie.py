@@ -268,7 +268,7 @@ if args.threads == 1:
             singleton=args.keep_singleton,
         )
 
-        results.append([score, tmp_results])
+        results.append(tmp_results)
 else:
     args_func = []
     for score_index in range(num_score):
@@ -306,8 +306,6 @@ else:
         )
     )
     pool.close()
-
-    results=[(i, results[i]) for i in range(num_score)]
 
 df = pd.DataFrame(results, columns=["threshold_value", "red_edges"])
 
