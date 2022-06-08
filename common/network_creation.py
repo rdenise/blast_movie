@@ -172,7 +172,7 @@ def star_visu_graph(args):
 ##########################################################################################
 
 
-def visu_graph(graph, output, threshold, annot_dict, thresholdName, layout):
+def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, layout):
 
     """
     Visualisation of the graph using the weight for the color. If weight >0.5
@@ -195,7 +195,7 @@ def visu_graph(graph, output, threshold, annot_dict, thresholdName, layout):
     all_gene = list(graph)
 
     # Get cotegory name
-    all_category = np.unique(list(annot_dict.values()))
+    all_category = np.unique(list(visu_dict.values()))
     num_category = all_category.shape[0]
     all_category = sorted(all_category)
 
@@ -204,8 +204,8 @@ def visu_graph(graph, output, threshold, annot_dict, thresholdName, layout):
 
     dict_color = {}
     for hit_id in all_gene:
-        if hit_id in annot_dict:
-            dict_color[hit_id] = tmp_color[annot_dict[hit_id]]
+        if hit_id in visu_dict:
+            dict_color[hit_id] = tmp_color[visu_dict[hit_id]]
         else:
             dict_color[hit_id] = "grey"
 

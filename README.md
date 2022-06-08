@@ -4,7 +4,7 @@ This script allows to take a blast file of all vs all comparison and to create a
 
 You wil have to provide: 
 - a blast file (output format 6)
-- an annotation file with the protein id, the length of the protein and the column containing the name of the group the protein belong.
+- an annotation file with the protein id, the length of the protein and the column containing the name of the group the protein belong(, and the columns for the coloring of the node that could differ from the grouping column [e.g. you want the color of the node based on the subfamily but the red edges based on the name of the protein]).
 
 ## Dependencies
 
@@ -44,8 +44,12 @@ General input dataset options:
                         Choose the threshold you want to see evolve between ['score', 'pident', 'coverage', 'evalue']
   -a <annotation>, --annotation <annotation>
                         Tabulated file with the information about the sequence need to have at least, 'protein_id', 'length' and the columns to group the protein
+  -g {dot,neato,fdp,sfdp,twopi,circo}, --graph_layout {dot,neato,fdp,sfdp,twopi,circo}
+                        Name of the layout to plot the graph between: dot, neato, fdp, sfdp, twopi, circo
+  -ce <column_name>, --cluster_egdes <column_name>
+                        Name of the column in annotation file that contains the information about the clustering that will be used to know if two proteins are in the same cluster
   -c <column_name>, --column_name <column_name>
-                        Name of the column in annotation file that contain the group you want to highligh in the figure
+                        Name of the column in annotation file that contain the group you want to highligh in the figure. The node will be colored based on this group
   -lcc {mean,subject,query,shortest,longest}, --length_choice_cov {mean,subject,query,shortest,longest}
                         Length used for percentage overlap calculation between 2 sequences: 'mean'=mean of the 2 lengths (default), 'subject'=subject length, 'query'=query length,
                         'shortest'=shortest length, 'longest'=longest length

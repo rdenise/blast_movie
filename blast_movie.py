@@ -73,11 +73,19 @@ general_option.add_argument(
     required=True,
 )
 general_option.add_argument(
+    "-ce",
+    "--cluster_egdes",
+    metavar="<column_name>",
+    dest="columnNameEdge",
+    help="Name of the column in annotation file that contains the information about the clustering that will be used to know if two proteins are in the same cluster",
+    required=True,
+)
+general_option.add_argument(
     "-c",
     "--column_name",
     metavar="<column_name>",
-    dest="columnName",
-    help="Name of the column in annotation file that contain the group you want to highligh in the figure",
+    dest="columnNameNode",
+    help="Name of the column in annotation file that contain the group you want to highligh in the figure. The node will be colored based on this group",
     required=True,
 )
 general_option.add_argument(
@@ -156,11 +164,12 @@ ANNOT = args.annotation
 annot_dtypes = {
     "protein_id": "string",
     "length": "int",
-    args.columnName: "string",
+    args.columnNameEdge: "string",
+    args.columnNameNode: "string",
 }
 
 annot_df = pd.read_table(
-    ANNOT, usecols=["protein_id", "length", args.columnName], dtype=annot_dtypes
+    ANNOT, usecols=["protein_id", "length", args.columnNameEdge, args.columnNameNode], dtype=annot_dtypes
 ).set_index("protein_id")
 
 # Opening blast_out and preparation
@@ -239,7 +248,10 @@ if args.threads == 1:
             output=name_output,
             threshold=score,
             annot_dict=annot_df.loc[
-                ~annot_df[args.columnName].isna(), args.columnName
+                ~annot_df[args.columnNameEdge].isna(), args.columnNameEdge
+            ].to_dict(),
+            visu_dict=annot_df.loc[
+                ~annot_df[args.columnNameNode].isna(), args.columnNameNode
             ].to_dict(),
             thresholdName=args.thresholdName,
             layout=args.graph_layout,
@@ -265,7 +277,10 @@ else:
                 name_output,
                 score,
                 annot_df.loc[
-                    ~annot_df[args.columnName].isna(), args.columnName
+                    ~annot_df[args.columnNameEdge].isna(), args.columnNameEdge
+                ].to_dict(),
+                annot_df.loc[
+                    ~annot_df[args.columnNameNode].isna(), args.columnNameNode
                 ].to_dict(),
                 args.thresholdName,
                 args.graph_layout,
