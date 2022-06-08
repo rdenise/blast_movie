@@ -64,6 +64,15 @@ general_option.add_argument(
     required=True,
 )
 general_option.add_argument(
+    "-g",
+    "--graph_layout",
+    dest="graph_layout",
+    default="sfdp",
+    choices=["dot", "neato", "fdp", "sfdp", "twopi", "circo"],
+    help="Name of the layout to plot the graph between: dot, neato, fdp, sfdp, twopi, circo",
+    required=True,
+)
+general_option.add_argument(
     "-c",
     "--column_name",
     metavar="<column_name>",
@@ -233,6 +242,7 @@ if args.threads == 1:
                 ~annot_df[args.columnName].isna(), args.columnName
             ].to_dict(),
             thresholdName=args.thresholdName,
+            layout=args.graph_layout,
         )
 
         results.append(tmp_results)
@@ -258,6 +268,7 @@ else:
                     ~annot_df[args.columnName].isna(), args.columnName
                 ].to_dict(),
                 args.thresholdName,
+                args.graph_layout,
             )
         )
 

@@ -172,7 +172,7 @@ def star_visu_graph(args):
 ##########################################################################################
 
 
-def visu_graph(graph, output, threshold, annot_dict, thresholdName):
+def visu_graph(graph, output, threshold, annot_dict, thresholdName, layout):
 
     """
     Visualisation of the graph using the weight for the color. If weight >0.5
@@ -251,7 +251,7 @@ def visu_graph(graph, output, threshold, annot_dict, thresholdName):
     edges, edge_colors = zip(*nx.get_edge_attributes(graph, "color").items())
 
     # Choose between : dot, neato, fdp, sfdp, twopi, circo
-    pos = graphviz_layout(graph, prog="sfdp")
+    pos = graphviz_layout(graph, prog=layout)
 
     # Put the color of the node
     nx.set_node_attributes(graph, dict_color, "color")
