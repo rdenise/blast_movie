@@ -22,7 +22,9 @@ You wil have to provide:
 
 ### Install all dependencies using mamba/conda
 
+```
 mamba create -n blast_movie matplotlib=3.5.2 networkx=2.8.3 numba=0.55.1 numpy=1.21.6 pandas=1.4.2 pygraphviz=1.9 tqdm=4.64.0 graphviz=3.0.0
+```
 
 ## Usage 
 
