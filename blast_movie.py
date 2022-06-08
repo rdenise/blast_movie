@@ -89,6 +89,14 @@ general_option.add_argument(
     required=True,
 )
 general_option.add_argument(
+    "-keep",
+    "--keep_singleton",
+    dest="keep_singleton",
+    help="Option to add or not the singleton in the final image",
+    action="store_true",
+    default=False,
+)
+general_option.add_argument(
     "-lcc",
     "--length_choice_cov",
     default="mean",
@@ -255,6 +263,7 @@ if args.threads == 1:
             ].to_dict(),
             thresholdName=args.thresholdName,
             layout=args.graph_layout,
+            singleton=args.keep_singleton,
         )
 
         results.append(tmp_results)
@@ -284,6 +293,7 @@ else:
                 ].to_dict(),
                 args.thresholdName,
                 args.graph_layout,
+                args.keep_singleton,
             )
         )
 

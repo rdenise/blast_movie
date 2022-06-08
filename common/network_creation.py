@@ -172,7 +172,7 @@ def star_visu_graph(args):
 ##########################################################################################
 
 
-def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, layout):
+def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, layout, singleton):
 
     """
     Visualisation of the graph using the weight for the color. If weight >0.5
@@ -187,9 +187,10 @@ def visu_graph(graph, output, threshold, annot_dict, visu_dict, thresholdName, l
     """
 
     # Remove singleton
-    outdeg = graph.degree()
-    to_remove = [n[0] for n in outdeg if outdeg[n[0]] == 0]
-    graph.remove_nodes_from(to_remove)
+    if not singleton:
+        outdeg = graph.degree()
+        to_remove = [n[0] for n in outdeg if outdeg[n[0]] == 0]
+        graph.remove_nodes_from(to_remove)
 
     # Get name of all nodes/genes
     all_gene = list(graph)
