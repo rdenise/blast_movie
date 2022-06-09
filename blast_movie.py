@@ -158,7 +158,7 @@ args = parser.parse_args()
 if args.output:
     OUTPUT = args.output
 else:
-    OUTPUT = os.path.join(os.getcwd(), os.path.basename(args.blast_tbl))
+    OUTPUT = os.path.join(os.getcwd(), os.path.basename(args.blastFile))
 
 ##########################################################################################
 
